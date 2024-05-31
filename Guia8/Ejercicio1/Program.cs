@@ -4,42 +4,69 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ejercicio1
+namespace ConsoleApp1
 {
     internal class Program
     {
-        #region variables y métodos del dominio
-        int[] numeros=new int[100];
-        int contador = 0;
 
+        #region variables y metodos del problema
+        static int[] numeros = new int[50];
+        static int contador = 0;
         #endregion
 
-        #region variables y métodos
-        static void MostrarMenu()
-        { 
+        #region variables y metodos de la vista
+        static int ImprimirMenuYSolicitarOpcion()
+        {
+            Console.Clear();
+
+            Console.WriteLine("\t\tMenú principal\n\n");
+
+            Console.WriteLine("1- Ingresar listado");
+            Console.WriteLine("2- Ordenar y mostrar listado");
+            Console.WriteLine("3- busqueda por valor");
+
+            int op = Convert.ToInt32(Console.ReadLine());
+
+            return op;
         }
 
-        static void MostrarCargaValore()
-        { }
+        static void MostrarSolicitudListado()
+        {
+
+            Console.Clear();
+
+            Console.WriteLine("Ingrese valor: -1 para salir");
+
+            int nro=Convert.ToInt32(Console.ReadLine());
+            while (nro > 0)
+            {
+                numeros[contador] = nro;
+                contador++;
+
+                nro=Convert.ToInt32(Console.ReadLine());
+            }
+
+            Console.WriteLine("Prsione un boton para volver al menú principal");
+            Console.ReadKey();
+
+        }
         #endregion
+
         static void Main(string[] args)
         {
-            int op = 0;
-
-            MostrarMenu();
-            op = Convert.ToInt32(Console.ReadLine());
-            while (op == 0)
+            int op = ImprimirMenuYSolicitarOpcion();
+            while (op != 0)
             {
                 switch (op)
                 {
                     case 1:
-                        { }break;
-                    default:
-                        { op = 0; }break;
+                        {
+                            MostrarSolicitudListado();
+                        }
+                        break;
+                    default: { op = 0; } break;
                 }
-
-                MostrarMenu();
-                op = Convert.ToInt32(Console.ReadLine());
+                op = ImprimirMenuYSolicitarOpcion();
             }
         }
     }
